@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<addon addon_id="exile_forcecaptcha" title="[Exile] Принудительная капча" version_string="1.1.0" version_id="110" url="https://torrentpier.me/" install_callback_class="" install_callback_method="" uninstall_callback_class="" uninstall_callback_method="">
+  <admin_navigation/>
+  <admin_permissions/>
+  <admin_style_properties/>
+  <admin_templates/>
+  <admin_template_modifications/>
+  <code_events/>
+  <code_event_listeners>
+    <listener event_id="load_class_controller" execute_order="10" callback_class="Exile_ForceCaptcha_Listener" callback_method="extendLoginController" active="1" hint="XenForo_ControllerPublic_Login" description="Extend login view"/>
+    <listener event_id="load_class_controller" execute_order="10" callback_class="Exile_ForceCaptcha_Listener" callback_method="extendAdminLoginController" active="1" hint="XenForo_ControllerAdmin_Login" description="Extend login view (admin)"/>
+    <listener event_id="load_class_model" execute_order="10" callback_class="Exile_ForceCaptcha_Listener" callback_method="extendLoginModel" active="1" hint="XenForo_Model_Login" description="Extend login model"/>
+  </code_event_listeners>
+  <cron/>
+  <email_templates/>
+  <email_template_modifications/>
+  <optiongroups/>
+  <permissions>
+    <permission_groups/>
+    <permissions/>
+    <interface_groups/>
+  </permissions>
+  <phrases/>
+  <route_prefixes/>
+  <style_properties/>
+  <templates/>
+  <public_template_modifications>
+    <modification template="helper_login_form" modification_key="exile_forcecaptcha_login_form" description="Вывод капчи на постоянной основе" execution_order="10" enabled="1" action="str_replace">
+      <find><![CDATA[<xen:if is="{$captcha}">
+		<dl class="ctrlUnit">
+			<dt>{xen:phrase verification}:</dt>
+			<dd>{xen:raw $captcha}</dd>
+		</dl>
+	</xen:if>]]></find>
+      <replace><![CDATA[<dl class="ctrlUnit">
+		<dt>{xen:phrase verification}:</dt>
+		<dd>{xen:raw $captcha}</dd>
+	</dl>]]></replace>
+    </modification>
+  </public_template_modifications>
+  <bb_code_media_sites/>
+  <bb_codes/>
+</addon>
